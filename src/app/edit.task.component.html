@@ -1,0 +1,73 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <form class="form-content" [formGroup]="editTaskForm" novalidate (ngSubmit)="save(editTaskForm.value)">
+    <div class="form-group row">
+      <h2 style="margin-left: 275px">Edit Task</h2>
+      <label for="editTask" class="col-xl-10 col-sm-10" style="margin-left: 275px">Select a Task</label>
+      <div class="col-sm-10">
+        <select name="editTask" id="editTask" class="form-control" style="margin-left: 275px" formControlName="editTask" (change)="updateFormFields($event.target.value)">
+          <option *ngFor="let task of tasksData" [ngValue]="task.taskId">{{task.taskName}}</option>
+        </select>
+      </div>
+    </div>
+  <br/>
+    <div class="form-group row">
+      <label for="taskName" class="col-sm-2 col-form-label col-form-label-sm" style="margin-left: 275px">Task Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="taskName" style="margin-left: 275px" formControlName="taskName" required="true">
+      </div>
+    </div>
+    <br/>
+    <div class="form-group row">
+      <label for="parentTask" class="col-sm-2 col-form-label" style="margin-left: 275px">Parent Task</label>
+      <div class="col-sm-10">
+        <select name="parentTask" id="parentTask" class="form-control" style="margin-left: 275px" formControlName="parentTask" (change)="updateFormFields($event.target.value)">
+          <option *ngFor="let task of tasksData" [ngValue]="task.taskId">{{task.taskName}}</option>
+        </select>
+      </div>
+    </div>
+   <br/>
+    <div class="form-group row">
+      <label for="priority" class="col-sm-2 col-form-label" style="margin-left: 275px">Priority</label>
+      <div class="col-sm-6">
+        <input type="range" class="form-control" id="priority" style="margin-left: 275px" formControlName="priority" min="0" max="10" [(ngModel)]="max">
+        <label for="priority">value: {{max}}</label>
+      </div>
+    </div>
+    <br/>
+    <div class="form-group row">
+      <label for="startDate" class="col-sm-2 col-form-label" style="margin-left: 275px">Start Date</label>
+      <div class="col-sm-6">
+        <input type="date" class="form-control" id="startDate" style="margin-left: 275px" formControlName="startDate" required="true">
+      </div>
+    </div>
+    <br/>
+    <div class="form-group row">
+      <label for="endDate" class="col-sm-2 col-form-label" style="margin-left: 275px">End Date</label>
+      <div class="col-sm-6">
+        <input type="date" class="form-control" id="endDate" style="margin-left: 275px" formControlName="endDate" required="false">
+      </div>
+    </div>
+    <br/>
+    <div class="form-group row">
+      <label for="editTask" class="col-xl-10 col-sm-10" style="margin-left: 275px">Status</label>
+      <div class="col-sm-10">
+        <select name="status" id="status" style="margin-left: 275px" class="form-control" formControlName="status">
+          <option *ngFor="let status of taskStatus" [ngValue]="status.code" >{{status.value}}</option>
+        </select>
+      </div>
+    </div>
+    <br/>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <button type="submit" style="margin-left: 275px" >Update Task</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div>
+
+</div>
+
+
+<router-outlet></router-outlet>

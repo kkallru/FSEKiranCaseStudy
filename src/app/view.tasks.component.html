@@ -1,0 +1,5 @@
+<h2 style="margin-left: 300px">Available Task</h2>
+<div style="margin-left: 250px">
+    <ng2-smart-table [settings]="this.taskSearchResultSettings" [source]="this.source" (deleteConfirm)="deleteRecord($event)"></ng2-smart-table>
+</div>
+<router-outlet></router-outlet>

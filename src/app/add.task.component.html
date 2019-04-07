@@ -1,0 +1,70 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div style="alignment: center">
+<form [formGroup]="addTaskForm" novalidate (ngSubmit)="save(addTaskForm.value, $event)">
+  <div class="row font-weight-bolder">
+  <h2 style="margin-left: 275px">  Add a New Task!</h2>
+  </div>
+
+  <div class="form-group row">
+    <label for="taskName" class="" style="margin-left: 275px">Task Name</label>
+    <div class="col-8">
+      <input type="text" class="form-control" style="margin-left: 275px" id="taskName" formControlName="taskName" required minlength="4">
+    </div>
+    <div *ngIf="addTaskForm.controls.taskName.invalid" class="alert alert-danger">
+      <div *ngIf="addTaskForm.controls.taskName.errors.required" style="color: red; margin-left: 275px">
+        Task Name is Required.
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="form-group row">
+    <label for="parentTask" class="col-xl-10 col-sm-10" style="margin-left: 275px">Select a Parent Task</label>
+    <div class="col-sm-10">
+      <select name="parentTask" id="parentTask" class="form-control" style="margin-left: 275px" formControlName="parentTask" [required]="true">
+        <option *ngFor="let task of tasksData" [ngValue]="task.taskId">{{task.taskName}}</option>
+      </select>
+    </div>
+    <div *ngIf="addTaskForm.controls.parentTask.invalid && (!addTaskForm.controls.parentTask.selected || addTaskForm.controls.parentTask.touched)" class="alert alert-danger">
+      <div *ngIf="addTaskForm.controls.parentTask.errors.required" style="color: red; margin-left: 275px">
+        Parent Task is Required.
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="form-group row">
+    <label for="priority" class="col-sm-2 col-form-label" style="margin-left: 275px">Priority</label>
+    <div class="col-sm-6">
+      <input type="range" class="form-control" id="priority" style="margin-left: 275px" formControlName="priority" min="0" max="10" [(ngModel)]="max">
+      <label for="priority">value: {{max}}</label>
+    </div>
+    <div [hidden]="addTaskForm.controls.priority.valid" class="validator-message"><i class="bg-warning" aria-hidden="true">Priority is Mandatory</i> </div>
+  </div>
+  <br/>
+  <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label" style="margin-left: 275px">Start Date</label>
+    <div class="col-sm-6">
+      <input type="date" class="form-control" id="startDate" style="margin-left: 275px" formControlName="startDate" required="true">
+    </div>
+    <div *ngIf="addTaskForm.controls.startDate.invalid" class="alert alert-danger">
+      <div *ngIf="addTaskForm.controls.startDate.errors.required" style="color: red; margin-left: 275px">
+        Start Date is Required.
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="form-group row">
+    <label for="endDate" class="col-sm-2 col-form-label" style="margin-left: 275px">End Date</label>
+    <div class="col-sm-6">
+      <input type="date" class="form-control" id="endDate" style="margin-left: 275px" formControlName="endDate" required="false">
+    </div>
+  </div>
+  <br/>
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <button type="submit" style="margin-left: 275px" >Save Task</button>
+    </div>
+  </div>
+</form>
+<router-outlet></router-outlet>
+</div>
