@@ -1,0 +1,3 @@
+Running UI
+
+Open command in the UI project folder and run the commnd 'ng serve'.
